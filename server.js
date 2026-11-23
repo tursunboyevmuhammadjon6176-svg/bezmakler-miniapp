@@ -294,23 +294,35 @@ app.use((err, _req, res, _next) => {
   res.status(400).json({ error: err.message || "So'rov xatosi." });
 });
 
+
 async function start() {
-  app.listen(PORT, () => console.log(`Web server ${PORT}-portda ishga tushdi`));
-  await bot.telegram.setChatMenuButton({
-    menuButton: {
-      type: "web_app",
-      text: "Kvartiralar",
-      web_app: { url: WEBAPP_URL }
-    }
+  app.listen(PORT, () => {
+    console.log(`Web server ${PORT}-portda ishga tushdi`);
   });
+
   await bot.launch();
   console.log("Telegram bot ishga tushdi");
+
+  try {
+    await bot.telegram.setChatMenuButton({
+      menuButton: {
+        type: "web_app",
+        text: "Kvartiralar",
+        web_app: { url: WEBAPP_URL }
+      }
+    });
+    console.log("Telegram menyusi sozlandi");
+  } catch (err) {
+    console.error("Menyu sozlashda xatolik:", err.message);
+    console.log("Bot ishlashda davom etadi");
+  }
 }
 
 start().catch(err => {
   console.error("Ishga tushirish xatosi:", err);
   process.exit(1);
 });
+
 
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
