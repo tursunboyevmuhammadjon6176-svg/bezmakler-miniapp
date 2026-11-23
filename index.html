@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#142442">
+  <title>BEZMAKLER KVARTIRALAR</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">BK</div>
+    <div>
+      <div class="brand">BEZMAKLER KVARTIRALAR</div>
+      <div class="subtitle">Maklersiz ijara platformasi</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="welcome">
+      <p class="eyebrow">TOSHKENT BO'YLAB</p>
+      <h1>O'zingizga mos uyni toping</h1>
+      <p>Maklersiz. Qulay. Ishonchli.</p>
+    </section>
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="list">🏠 Kvartiralar</button>
+      <button class="tab" data-tab="add">➕ E'lon berish</button>
+      <button class="tab" data-tab="profile">👤 Profil</button>
+    </nav>
+
+    <section id="listSection" class="section">
+      <input id="searchInput" class="control" placeholder="🔎 Tuman yoki manzil bo'yicha qidirish">
+      <div class="filter-row">
+        <select id="audienceFilter" class="control">
+          <option value="">Kimlarga?</option>
+          <option>Qizlarga</option>
+          <option>Yigitlarga</option>
+          <option>Oilaga</option>
+          <option>Barchaga</option>
+        </select>
+        <select id="roomsFilter" class="control">
+          <option value="">Xonalar</option>
+          <option value="1">1 xona</option>
+          <option value="2">2 xona</option>
+          <option value="3">3 xona</option>
+          <option value="4">4 xona</option>
+          <option value="5">5+ xona</option>
+        </select>
+      </div>
+      <div id="listingCount" class="result-count">E'lonlar yuklanmoqda...</div>
+      <div id="listings" class="listing-grid"></div>
+    </section>
+
+    <section id="addSection" class="section hidden">
+      <div class="panel">
+        <h2>📢 E'lon joylashtirish</h2>
+        <p class="muted">E'loningiz admin tekshiruvidan so'ng platformada chiqadi.</p>
+        <form id="listingForm">
+          <label>Kvartira nomi *</label>
+          <input class="control" name="title" required maxlength="100" placeholder="Masalan: Chilonzor 2 xonali">
+          <label>Tuman *</label>
+          <input class="control" name="district" required placeholder="Masalan: Chilonzor">
+          <label>Aniq manzil yoki mo'ljal</label>
+          <input class="control" name="address" placeholder="Metro, ko'cha, mo'ljal">
+          <div class="form-row">
+            <div>
+              <label>Xonalar soni *</label>
+              <select class="control" name="rooms" required>
+                <option value="">Tanlang</option>
+                <option value="1">1</option><option value="2">2</option>
+                <option value="3">3</option><option value="4">4</option>
+                <option value="5">5+</option>
+              </select>
+            </div>
+            <div>
+              <label>Narxi (so'm) *</label>
+              <input class="control" name="price" type="number" min="1" required placeholder="1500000">
+            </div>
+          </div>
+          <label>Kimlarga beriladi? *</label>
+          <select class="control" name="audience" required>
+            <option value="">Tanlang</option>
+            <option>Qizlarga</option><option>Yigitlarga</option>
+            <option>Oilaga</option><option>Barchaga</option>
+          </select>
+          <label>Telefon raqam *</label>
+          <input class="control" name="phone" type="tel" required placeholder="+998901234567">
+          <label>Qo'shimcha ma'lumot</label>
+          <textarea class="control" name="description" rows="4" maxlength="1000" placeholder="Sharoit, kommunal, depozit va boshqa ma'lumotlar"></textarea>
+          <label>Uy rasmi (JPG, PNG yoki WEBP, 8 MB gacha)</label>
+          <input class="control file-input" name="photo" type="file" accept="image/jpeg,image/png,image/webp">
+          <button class="primary-btn" type="submit">E'LONNI ADМINGA YUBORISH</button>
+          <div id="formMessage" class="message"></div>
+        </form>
+      </div>
+    </section>
+
+    <section id="profileSection" class="section hidden">
+      <div class="panel">
+        <div class="avatar">👤</div>
+        <h2 id="profileName">Foydalanuvchi</h2>
+        <p id="profileUsername" class="muted"></p>
+        <p id="profileId" class="muted"></p>
+        <p class="muted">E'lonlar admin tasdiqlaganidan keyin hammaga ko'rinadi.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>© BEZMAKLER KVARTIRALAR</footer>
+  <script src="/app.js"></script>
+</body>
+</html>
